@@ -6,7 +6,8 @@ services:
     restart: always
     container_name: mysql_container
     environment:
-      MYSQL_ROOT_PASSWORD: 1122
+      MYSQL_ROOT_PASSWORD: vkflwldhr1234
+      MYSQL_DATABASE: venus_planner
     ports:
       - "3306:3306"
     volumes:
