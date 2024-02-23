@@ -42,7 +42,7 @@ CREATE TABLE `sign_in_type`
 CREATE TABLE `plan`
 (
     `id`                  BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `category_id`         BIGINT       NULL,
+    `plan_category_id`         BIGINT       NULL,
     `study_id`            BIGINT       NOT NULL,
     `recurring_option_id` BIGINT       NULL,
     `title`               VARCHAR(100) NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `plan`
     `notification_time`   TIMESTAMP    NULL
 );
 
-CREATE TABLE `category`
+CREATE TABLE `plan_category`
 (
     `id`               BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `study_id`         BIGINT      NOT NULL,
