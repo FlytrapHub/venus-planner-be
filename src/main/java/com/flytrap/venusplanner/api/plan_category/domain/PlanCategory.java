@@ -1,5 +1,6 @@
-package com.flytrap.venusplanner.api.study.domain;
+package com.flytrap.venusplanner.api.plan_category.domain;
 
+import com.flytrap.venusplanner.api.study.domain.Study;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
