@@ -12,10 +12,12 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicUpdate
 public class PlanCategory {
 
     @Id
@@ -47,6 +49,12 @@ public class PlanCategory {
     @Builder
     private PlanCategory(Long studyId, String title, String fontColor, String backgroundColor) {
         this.studyId = studyId;
+        this.title = title;
+        this.fontColor = ColorCode.from(fontColor);
+        this.backgroundColor = ColorCode.from(backgroundColor);
+    }
+
+    public void update(String title, String fontColor, String backgroundColor) {
         this.title = title;
         this.fontColor = ColorCode.from(fontColor);
         this.backgroundColor = ColorCode.from(backgroundColor);

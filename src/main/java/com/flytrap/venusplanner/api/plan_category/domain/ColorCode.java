@@ -11,17 +11,17 @@ public class ColorCode {
 
     private String code;
 
-    private ColorCode(String code) {
-        validateCode(code);
-        this.code = code;
+    private ColorCode(String color) {
+        validateCode(color);
+        this.code = color;
     }
 
-    public static ColorCode from(String code) {
-        return new ColorCode(code);
+    public static ColorCode from(String color) {
+        return new ColorCode(color);
     }
 
-    private void validateCode(String code) {
-        if (!code.matches("^#[0-9A-Fa-f]{6}$")) {
+    private void validateCode(String color) {
+        if (!color.matches("^#[0-9A-Fa-f]{6}$")) {
             throw new IllegalArgumentException(); // TODO 커스텀 예외로 수정
         }
     }
