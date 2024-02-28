@@ -8,6 +8,7 @@ import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessio
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +31,13 @@ public class AuthMemberController {
         session.setAttribute(authSessionProperties.sessionName(), SessionMember.from(member));
 
         return ResponseEntity.ok().body(LoginDto.Response.from(member));
+    }
+
+    @DeleteMapping("/auth/sign-out")
+    public ResponseEntity<Void> signOut(HttpSession session) {
+
+        session.invalidate();
+
+        return ResponseEntity.noContent().build();
     }
 }
