@@ -18,11 +18,19 @@ CREATE TABLE `member_study`
 
 CREATE TABLE `member`
 (
-    `id`           BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `sign_type`    BIGINT       NOT NULL,
-    `email`        VARCHAR(255) NOT NULL COMMENT 'OAuth 아이디 (이메일 형식)',
-    `nickname`     VARCHAR(50)  NOT NULL COMMENT 'OAuth 이름(닉네임)',
-    `created_time` TIMESTAMP    NOT NULL
+    `id`                BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `oauth_pk`          VARCHAR(100)    NOT NULL,
+    `oauth_platform_id` BIGINT          NOT NULL,
+    `email`             VARCHAR(255)    NOT NULL COMMENT 'OAuth 아이디 (이메일 형식)',
+    `profile_image_url` VARCHAR(2500)   NULL,
+    `nickname`          VARCHAR(50)     NOT NULL COMMENT 'OAuth 이름(닉네임)',
+    `created_time`      TIMESTAMP       NOT NULL
+);
+
+CREATE TABLE `oauth_platform`
+(
+    `id`   BIGINT       NOT NULL,
+    `name` VARCHAR(10)  NULL
 );
 
 CREATE TABLE `study`
