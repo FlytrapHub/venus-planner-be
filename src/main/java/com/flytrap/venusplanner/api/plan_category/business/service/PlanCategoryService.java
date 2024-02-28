@@ -13,6 +13,12 @@ public class PlanCategoryService {
 
     private final PlanCategoryRepository planCategoryRepository;
 
+    @Transactional
+    public Long savePlanCategory(PlanCategory planCategory) {
+        planCategoryRepository.save(planCategory);
+        return planCategory.getId();
+    }
+
     public PlanCategory findById(Long id) {
         //TODO: optional null일 때 에러처리
         return planCategoryRepository.findById(id).get();
