@@ -1,9 +1,10 @@
 package com.flytrap.venusplanner.api.auth_member.presentation.controller;
 
 import com.flytrap.venusplanner.api.auth_member.business.service.AuthMemberService;
+import com.flytrap.venusplanner.api.member.domain.Member;
 import com.flytrap.venusplanner.api.auth_member.presentation.dto.LoginDto;
 import com.flytrap.venusplanner.api.auth_member.presentation.dto.SessionMember;
-import com.flytrap.venusplanner.api.member.domain.Member;
+import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthMemberController {
 
+    private final AuthSessionProperties authSessionProperties;
     private final AuthMemberService authMemberService;
 
     @PostMapping("/auth/sign-in")
@@ -25,7 +27,7 @@ public class AuthMemberController {
             HttpSession session
     ) {
         Member member = authMemberService.authenticateAndFetchMember(request);
-        session.setAttribute("SESSION_NAME", SessionMember.from(member));
+        session.setAttribute(authSessionProperties.sessionName(), SessionMember.from(member));
 
         return ResponseEntity.ok().body(LoginDto.Response.from(member));
     }
