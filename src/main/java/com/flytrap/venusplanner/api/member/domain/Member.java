@@ -1,5 +1,6 @@
 package com.flytrap.venusplanner.api.member.domain;
 
+import com.flytrap.venusplanner.global.auth.infrastructure.dto.StandardizedUserResource;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,4 +39,13 @@ public class Member {
         this.nickname = nickname;
     }
 
+    public static Member from(StandardizedUserResource userResource) {
+        return Member.builder()
+                .oauthPk(userResource.oauthPk())
+                .oauthPlatformId(userResource.authPlatformType().getId())
+                .email(userResource.email())
+                .profileImageUrl(userResource.profileUrl())
+                .nickname(userResource.nickname())
+                .build();
+    }
 }
