@@ -28,4 +28,9 @@ public class PlanCategoryService {
     public List<PlanCategory> findAllByStudyId(Long studyId) {
         return planCategoryRepository.findAllByStudyId(studyId);
     }
+
+    @Transactional
+    public void deleteById(Long categoryId) {
+        planCategoryRepository.deleteById(categoryId);
+    }
 }
