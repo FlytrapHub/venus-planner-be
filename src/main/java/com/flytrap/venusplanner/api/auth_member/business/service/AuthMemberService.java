@@ -20,7 +20,6 @@ public class AuthMemberService {
     public Member authenticateAndFetchMember(LoginDto.Request request) {
 
         var userResource = oAuthProvider.authenticateAndFetchUserResource(request.code());
-
         var authenticatedMember = memberRepository.findByOauthPk(userResource.oauthPk())
                 .orElse(Member.from(userResource));
 
