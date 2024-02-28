@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,16 @@ public class PlanCategoryController {
 
         return ResponseEntity.ok()
                 .body(PlanCategoryReadResponse.from(planCategories));
+    }
+
+    @DeleteMapping("/api/v1/studies/{studyId}/categories/{categoryId}")
+    public ResponseEntity<Void> deletePlanCategory(
+            @PathVariable("categoryId") Long categoryId
+    ) {
+        // TODO 회원의 삭제 권한을 검증하는 로직 구현
+        planCategoryService.deleteById(categoryId);
+
+        return ResponseEntity.ok()
+                .build();
     }
 }
