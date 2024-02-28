@@ -2,6 +2,7 @@ package com.flytrap.venusplanner.api.plan_category.business.service;
 
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
 import com.flytrap.venusplanner.api.plan_category.infrastructure.repository.PlanCategoryRepository;
+import com.flytrap.venusplanner.api.plan_category.presentation.dto.request.PlanCategoryUpdateRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,12 @@ public class PlanCategoryService {
 
     public List<PlanCategory> findAllByStudyId(Long studyId) {
         return planCategoryRepository.findAllByStudyId(studyId);
+    }
+
+    @Transactional
+    public void update(Long categoryId, PlanCategoryUpdateRequest request) {
+        PlanCategory planCategory = findById(categoryId);
+        planCategory.update(request.title(), request.fontColor(), request.backgroundColor());
     }
 
     @Transactional
