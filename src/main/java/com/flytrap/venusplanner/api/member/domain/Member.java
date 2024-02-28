@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -21,10 +22,19 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String oauthPk;
+
+    @NotNull
     private Long oauthPlatformId;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String profileImageUrl;
+
+    @NotNull
     private String nickname;
 
     @CreationTimestamp
