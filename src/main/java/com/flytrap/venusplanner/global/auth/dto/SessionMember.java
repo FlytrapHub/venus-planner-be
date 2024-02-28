@@ -1,4 +1,4 @@
-package com.flytrap.venusplanner.api.auth_member.presentation.dto;
+package com.flytrap.venusplanner.global.auth.dto;
 
 import com.flytrap.venusplanner.api.member.domain.Member;
 import java.io.Serializable;

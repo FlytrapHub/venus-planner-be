@@ -3,7 +3,7 @@ package com.flytrap.venusplanner.api.auth_member.presentation.controller;
 import com.flytrap.venusplanner.api.auth_member.business.service.AuthMemberService;
 import com.flytrap.venusplanner.api.member.domain.Member;
 import com.flytrap.venusplanner.api.auth_member.presentation.dto.LoginDto;
-import com.flytrap.venusplanner.api.auth_member.presentation.dto.SessionMember;
+import com.flytrap.venusplanner.global.auth.dto.SessionMember;
 import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

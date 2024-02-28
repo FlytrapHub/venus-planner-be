@@ -1,6 +1,6 @@
 package com.flytrap.venusplanner.global.auth.resolver;
 
-import com.flytrap.venusplanner.api.auth_member.presentation.dto.SessionMember;
+import com.flytrap.venusplanner.global.auth.dto.SessionMember;
 import com.flytrap.venusplanner.global.auth.annotation.SignIn;
 import com.flytrap.venusplanner.global.auth.exception.SessionMemberAuthException;
 import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
