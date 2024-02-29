@@ -4,5 +4,5 @@ import com.flytrap.venusplanner.global.auth.infrastructure.dto.StandardizedUserR
 
 public interface OAuthProvider {
 
-    StandardizedUserResource authenticateAndFetchMember(String code);
+    StandardizedUserResource authenticateAndFetchUserResource(String code);
 }
