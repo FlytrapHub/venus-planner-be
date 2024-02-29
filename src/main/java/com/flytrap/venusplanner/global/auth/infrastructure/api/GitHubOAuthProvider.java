@@ -36,7 +36,7 @@ public class GitHubOAuthProvider implements OAuthProvider {
      * @throws GitHubOAuthRequestException GitHub 요청 과정에서 오류가 발생했을 때 발생합니다.
      * 이는 네트워크 문제, 데이터 포맷 문제, 서버 측 오류 등 다양한 이유로 발생할 수 있습니다.
      */
-    public StandardizedUserResource authenticateAndFetchMember(String code) {
+    public StandardizedUserResource authenticateAndFetchUserResource(String code) {
 
         var accessToken = requestAccessToken(code);
         var userResource = requestUserResource(accessToken);
