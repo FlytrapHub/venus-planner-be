@@ -13,4 +13,10 @@ public class PlanCategoryStep extends AcceptanceTest {
                 .when().post("/api/v1/studies/{studyId}/categories", studyId)
                 .then().log().all().extract();
     }
+
+    public static ExtractableResponse<Response> 일정_카테고리_조회_요청(Long studyId) {
+        return givenJsonRequest()
+                .when().get("/api/v1/studies/{studyId}/categories", studyId)
+                .then().log().all().extract();
+    }
 }

@@ -4,7 +4,8 @@ import com.flytrap.venusplanner.api.plan_category.presentation.dto.PlanCategoryC
 
 public enum PlanCategoryFixture {
 
-    모임("모임", "#FFFFFF", "#000000");
+    모임("모임", "#FFFFFF", "#000000"),
+    회의("회의", "#FF00FF", "#0000FF");
 
     private final String title;
     private final String fontColor;
@@ -22,5 +23,17 @@ public enum PlanCategoryFixture {
                 this.fontColor,
                 this.backgroundColor
         );
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getFontColor() {
+        return fontColor;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
     }
 }
