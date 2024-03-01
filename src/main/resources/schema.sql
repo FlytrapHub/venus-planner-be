@@ -1,4 +1,4 @@
-USE venus_planner;
+--USE venus_planner;
 
 CREATE TABLE `roll`
 (
