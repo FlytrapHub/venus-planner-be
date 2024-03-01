@@ -19,4 +19,10 @@ public class PlanCategoryStep extends AcceptanceTest {
                 .when().get("/api/v1/studies/{studyId}/categories", studyId)
                 .then().log().all().extract();
     }
+
+    public static ExtractableResponse<Response> 일정_카테고리_삭제_요청(Long studyId, Long categoryId) {
+        return givenJsonRequest()
+                .when().delete("/api/v1/studies/{studyId}/categories/{categoryId}", studyId, categoryId)
+                .then().log().all().extract();
+    }
 }
