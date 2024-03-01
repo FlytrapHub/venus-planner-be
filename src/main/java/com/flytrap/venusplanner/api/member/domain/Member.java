@@ -2,6 +2,7 @@ package com.flytrap.venusplanner.api.member.domain;
 
 import com.flytrap.venusplanner.global.auth.infrastructure.dto.StandardizedUserResource;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,9 +12,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
@@ -37,7 +40,7 @@ public class Member {
     @NotNull
     private String nickname;
 
-    @CreationTimestamp
+    @CreatedDate
     private Instant createdTime;
 
     @Builder
