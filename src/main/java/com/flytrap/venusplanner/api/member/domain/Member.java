@@ -44,7 +44,7 @@ public class Member {
     private Instant createdTime;
 
     @Builder
-    public Member(String oauthPk, Long oauthPlatformId, String email, String profileImageUrl, String nickname) {
+    private Member(String oauthPk, Long oauthPlatformId, String email, String profileImageUrl, String nickname) {
         this.oauthPk = oauthPk;
         this.oauthPlatformId = oauthPlatformId;
         this.email = email;
