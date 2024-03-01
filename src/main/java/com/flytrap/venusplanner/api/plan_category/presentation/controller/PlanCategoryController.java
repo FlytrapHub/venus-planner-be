@@ -2,7 +2,7 @@ package com.flytrap.venusplanner.api.plan_category.presentation.controller;
 
 import com.flytrap.venusplanner.api.plan_category.business.service.PlanCategoryService;
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
-import com.flytrap.venusplanner.api.plan_category.presentation.dto.request.PlanCategoryCreateRequest;
+import com.flytrap.venusplanner.api.plan_category.presentation.dto.PlanCategoryCreateDto;
 import com.flytrap.venusplanner.api.plan_category.presentation.dto.request.PlanCategoryUpdateRequest;
 import com.flytrap.venusplanner.api.plan_category.presentation.dto.response.PlanCategoryReadResponse;
 import jakarta.validation.Valid;
@@ -25,14 +25,14 @@ public class PlanCategoryController {
     private final PlanCategoryService planCategoryService;
 
     @PostMapping("/api/v1/studies/{studyId}/categories")
-    public ResponseEntity<Long> createPlanCategory(
+    public ResponseEntity<PlanCategoryCreateDto.Response> createPlanCategory(
             @PathVariable("studyId") Long studyId,
-            @Valid @RequestBody PlanCategoryCreateRequest request
+            @Valid @RequestBody PlanCategoryCreateDto.Request request
     ) {
         Long categoryId = planCategoryService.savePlanCategory(request.toEntity(studyId));
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(categoryId);
+                .body(PlanCategoryCreateDto.Response.from(categoryId));
     }
 
     @GetMapping("/api/v1/studies/{studyId}/categories")
