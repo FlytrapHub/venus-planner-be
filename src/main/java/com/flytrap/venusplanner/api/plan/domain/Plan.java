@@ -9,12 +9,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Getter
@@ -35,9 +39,10 @@ public class Plan {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recurring_option_id")
+    @Cascade(CascadeType.ALL)
     private RecurringOption recurringOption;
 
-    private String title; // Null 이면 default: 새로운 일정
+    private String title;
     private String description;
 
     @NotNull
@@ -60,5 +65,15 @@ public class Plan {
         this.startTime = startTime;
         this.endTime = endTime;
         this.notificationTime = notificationTime;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void validateTitle() {
+        final String DEFAULT_TILE = "새로운 일정";
+
+        if (title == null || title.isBlank()) {
+            title = DEFAULT_TILE;
+        }
     }
 }

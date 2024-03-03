@@ -6,9 +6,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,16 +22,19 @@ public class RecurringOption {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
     private Frequency frequency;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
-    private EndOption end_option;
+    private EndOption endOption;
+    private Integer recurrenceCount;
+    private Instant endDate;
 
-    @NotNull
-    private Integer recurrence_count;
-
-    @NotNull
-    private Instant end_date;
+    @Builder
+    public RecurringOption(Frequency frequency, EndOption endOption,
+                           Integer recurrenceCount, Instant endDate) {
+        this.frequency = frequency;
+        this.endOption = endOption;
+        this.recurrenceCount = recurrenceCount;
+        this.endDate = endDate;
+    }
 }
