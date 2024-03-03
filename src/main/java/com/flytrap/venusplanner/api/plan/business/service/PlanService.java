@@ -26,8 +26,8 @@ public class PlanService {
         return plan.getId();
     }
 
-    public List<Plan> findAllByStudyId(Long studyId) {
-        return planRepository.findAllByStudyId(studyId);
+    public List<Plan> findAllByStudyIdAndYearAndMonth(Long studyId, int year, int month) {
+        return planRepository.findAllByStudyIdAndYearAndMonth(studyId, year, month);
     }
 
     @Transactional

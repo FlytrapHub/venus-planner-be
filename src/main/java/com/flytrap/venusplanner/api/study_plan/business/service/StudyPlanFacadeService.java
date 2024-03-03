@@ -11,7 +11,6 @@ import com.flytrap.venusplanner.api.study_plan.presentation.dto.response.StudyPl
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +26,9 @@ public class StudyPlanFacadeService {
         return planService.savePlan(study, planCategory, request);
     }
 
-    public List<StudyPlanReadResponse> findAllByStudyId(Long studyId) {
+    public List<StudyPlanReadResponse> findAllBy(Long studyId, int year, int month) {
         Study study = studyService.findById(studyId);
-        List<Plan> plans = planService.findAllByStudyId(studyId);
+        List<Plan> plans = planService.findAllByStudyIdAndYearAndMonth(studyId, year, month);
 
         return StudyPlanReadResponse.from(plans);
     }

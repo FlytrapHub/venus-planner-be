@@ -37,7 +37,7 @@ public class StudyPlanController {
     public ResponseEntity<List<StudyPlanReadResponse>> readPlans(
             @PathVariable("studyId") Long studyId,
             @Valid @ModelAttribute PlanReadConditionRequest params) {
-        List<StudyPlanReadResponse> studyPlans = studyPlanFacadeService.findAllByStudyId(studyId);
+        List<StudyPlanReadResponse> studyPlans = studyPlanFacadeService.findAllBy(studyId, params.year(), params.month());
 
         return ResponseEntity.ok()
                 .body(studyPlans);
