@@ -1,7 +1,8 @@
 package com.flytrap.venusplanner.api.study_plan.presentation.controller;
 
-import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
 import com.flytrap.venusplanner.api.study_plan.business.service.StudyPlanFacadeService;
+import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,8 @@ public class StudyPlanController {
     private final StudyPlanFacadeService studyPlanFacadeService;
 
     @PostMapping("/api/v1/studies/{studyId}/plans")
-    public ResponseEntity<Long> createPlan(@PathVariable Long studyId, @RequestBody StudyPlanCreateRequest request) {
+    public ResponseEntity<Long> createPlan(@PathVariable("studyId") Long studyId,
+                                           @Valid @RequestBody StudyPlanCreateRequest request) {
         Long memberId = 1L;
         Long planId = studyPlanFacadeService.savePlan(studyId, request);
 

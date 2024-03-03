@@ -4,15 +4,32 @@ import com.flytrap.venusplanner.api.plan.domain.Plan;
 import com.flytrap.venusplanner.api.plan.domain.RecurringOption;
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
 import com.flytrap.venusplanner.api.study.domain.Study;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.Instant;
 
 public record StudyPlanCreateRequest(
+        @NotNull
         Long categoryId,
+
+        @NotBlank
+        @Size(min = 1, max = 100)
         String title,
+
+        @Size(max = 255)
         String description,
+
+        @NotNull
         Instant startTime,
+
+        @NotNull
         Instant endTime,
-        Instant notificationTime
+
+        @Future
+        Instant notificationTime,
+        RecurringOptionRequest recurringOption
 ) {
     public Plan toEntity(Study study, PlanCategory planCategory, RecurringOption recurringOption) {
         return Plan.builder()
