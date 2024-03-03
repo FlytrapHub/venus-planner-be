@@ -5,6 +5,7 @@ import com.flytrap.venusplanner.api.plan.infrastructure.repository.PlanRepositor
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
 import com.flytrap.venusplanner.api.study.domain.Study;
 import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +23,9 @@ public class PlanService {
         planRepository.save(plan);
 
         return plan.getId();
+    }
+
+    public List<Plan> findAllByStudyId(Long studyId) {
+        return planRepository.findAllByStudyId(studyId);
     }
 }
