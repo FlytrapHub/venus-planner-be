@@ -39,7 +39,7 @@ public class Plan {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recurring_option_id")
-    @Cascade(CascadeType.ALL)
+    @Cascade(CascadeType.PERSIST)
     private RecurringOption recurringOption;
 
     private String title;

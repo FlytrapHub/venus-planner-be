@@ -35,4 +35,9 @@ public class StudyPlanFacadeService {
 
         return StudyPlanReadResponse.from(plans);
     }
+
+    @Transactional()
+    public void deleteById(Long planId) {
+        planService.deleteById(planId);
+    }
 }

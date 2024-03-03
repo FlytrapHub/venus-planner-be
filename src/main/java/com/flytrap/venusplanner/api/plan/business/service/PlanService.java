@@ -28,4 +28,11 @@ public class PlanService {
     public List<Plan> findAllByStudyId(Long studyId) {
         return planRepository.findAllByStudyId(studyId);
     }
+
+    public void deleteById(Long planId) {
+        //TODO: 멤버의 권한 검증 로직
+        //TODO: 반복옵션 전체 삭제 여부
+        //TODO: plan이 없을 때 예외처리
+        planRepository.deleteById(planId);
+    }
 }
