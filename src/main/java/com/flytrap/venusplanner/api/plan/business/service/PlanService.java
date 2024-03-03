@@ -17,6 +17,7 @@ public class PlanService {
 
     private final PlanRepository planRepository;
 
+    @Transactional
     public Long savePlan(Study study, PlanCategory planCategory, StudyPlanCreateRequest request) {
         //TODO: 반복 옵션 설정시 DB에 여러 plan 저장 로직 추가
         Plan plan = request.toEntity(study, planCategory);
@@ -29,6 +30,7 @@ public class PlanService {
         return planRepository.findAllByStudyId(studyId);
     }
 
+    @Transactional
     public void deleteById(Long planId) {
         //TODO: 멤버의 권한 검증 로직
         //TODO: 반복옵션 전체 삭제 여부

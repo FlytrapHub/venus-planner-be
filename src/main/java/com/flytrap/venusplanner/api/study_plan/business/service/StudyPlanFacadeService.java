@@ -15,14 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class StudyPlanFacadeService {
 
     private final StudyService studyService;
     private final PlanCategoryService planCategoryService;
     private final PlanService planService;
 
-    @Transactional(readOnly = false)
     public Long savePlan(Long studyId, StudyPlanCreateRequest request) {
         Study study = studyService.findById(studyId);
         PlanCategory planCategory = planCategoryService.findById(request.categoryId());
@@ -36,7 +34,6 @@ public class StudyPlanFacadeService {
         return StudyPlanReadResponse.from(plans);
     }
 
-    @Transactional()
     public void deleteById(Long planId) {
         planService.deleteById(planId);
     }

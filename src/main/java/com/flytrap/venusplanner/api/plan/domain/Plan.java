@@ -33,7 +33,7 @@ public class Plan {
     @JoinColumn(name = "study_id", nullable = false)
     private Study study;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_category_id")
     private PlanCategory planCategory;
 
