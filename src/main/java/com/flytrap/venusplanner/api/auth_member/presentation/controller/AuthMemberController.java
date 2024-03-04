@@ -36,6 +36,6 @@ public class AuthMemberController {
 
         session.invalidate();
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
