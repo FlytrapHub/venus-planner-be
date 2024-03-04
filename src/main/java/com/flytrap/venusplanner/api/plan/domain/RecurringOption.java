@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,9 +23,11 @@ public class RecurringOption {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private Frequency frequency;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private EndOption endOption;
     private Integer recurrenceCount;
     private Instant endDate;
