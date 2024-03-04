@@ -50,17 +50,17 @@ CREATE TABLE `sign_in_type`
 CREATE TABLE `plan`
 (
     `id`                  BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `category_id`         BIGINT       NULL,
+    `plan_category_id`         BIGINT       NULL,
     `study_id`            BIGINT       NOT NULL,
     `recurring_option_id` BIGINT       NULL,
-    `title`               VARCHAR(100) NULL,
+    `title`               VARCHAR(100) NOT NULL,
     `description`         VARCHAR(255) NULL,
     `start_time`          TIMESTAMP    NOT NULL,
     `end_time`            TIMESTAMP    NOT NULL,
     `notification_time`   TIMESTAMP    NULL
 );
 
-CREATE TABLE `category`
+CREATE TABLE `plan_category`
 (
     `id`               BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `study_id`         BIGINT      NOT NULL,
@@ -74,8 +74,8 @@ CREATE TABLE `recurring_option`
     `id`               BIGINT                               NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `frequency`        ENUM ("WEEKLY", "MONTHLY", "YEARLY") NOT NULL COMMENT '매주, 매달, 매년',
     `end_option`       ENUM ("DATE", "COUNT")               NOT NULL COMMENT '횟수, 특정 날짜',
-    `recurrence_count` INT                                  NOT NULL,
-    `end_date`         TIMESTAMP                            NOT NULL
+    `recurrence_count` INT                                  NULL,
+    `end_date`         TIMESTAMP                            NULL
 );
 
 CREATE TABLE `permission`
