@@ -1,7 +1,7 @@
 package com.flytrap.venusplanner.api.auth_member.presentation.controller;
 
 import com.flytrap.venusplanner.api.auth_member.business.service.AuthMemberService;
-import com.flytrap.venusplanner.api.auth_member.presentation.dto.LoginDto;
+import com.flytrap.venusplanner.api.auth_member.presentation.dto.SignInDto;
 import com.flytrap.venusplanner.api.member.domain.Member;
 import com.flytrap.venusplanner.global.auth.dto.SessionMember;
 import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
@@ -21,14 +21,14 @@ public class AuthMemberController {
     private final AuthMemberService authMemberService;
 
     @PostMapping("/api/v1/auth/sign-in")
-    public ResponseEntity<LoginDto.Response> signIn(
-            @RequestBody LoginDto.Request request,
+    public ResponseEntity<SignInDto.Response> signIn(
+            @RequestBody SignInDto.Request request,
             HttpSession session
     ) {
         Member member = authMemberService.authenticateAndFetchMember(request);
         session.setAttribute(authSessionProperties.sessionName(), SessionMember.from(member));
 
-        return ResponseEntity.ok().body(LoginDto.Response.from(member));
+        return ResponseEntity.ok().body(SignInDto.Response.from(member));
     }
 
     @DeleteMapping("/api/v1/auth/sign-out")
