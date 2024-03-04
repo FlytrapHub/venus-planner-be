@@ -9,5 +9,13 @@ public record StandardizedUserResource(
         String profileUrl,
         OAuthPlatformType authPlatformType
 ) {
-
+    public static StandardizedUserResource from(UserResourceFromGitHub userResource) {
+        return new StandardizedUserResource(
+                userResource.getOAuthPk(),
+                userResource.getEmail(),
+                userResource.getLogin(),
+                userResource.getAvatarUrl(),
+                OAuthPlatformType.GITHUB
+        );
+    }
 }
