@@ -4,7 +4,7 @@ import com.flytrap.venusplanner.api.auth_member.business.service.AuthMemberServi
 import com.flytrap.venusplanner.api.auth_member.presentation.dto.SignInDto;
 import com.flytrap.venusplanner.api.member.domain.Member;
 import com.flytrap.venusplanner.global.auth.dto.SessionMember;
-import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
+import com.flytrap.venusplanner.global.auth.properties.AuthSessionProperties;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

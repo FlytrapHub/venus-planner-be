@@ -3,7 +3,7 @@ package com.flytrap.venusplanner.global.auth.resolver;
 import com.flytrap.venusplanner.global.auth.dto.SessionMember;
 import com.flytrap.venusplanner.global.auth.annotation.SignIn;
 import com.flytrap.venusplanner.global.auth.exception.SessionMemberAuthException;
-import com.flytrap.venusplanner.global.auth.infrastructure.properties.AuthSessionProperties;
+import com.flytrap.venusplanner.global.auth.properties.AuthSessionProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.util.Optional;

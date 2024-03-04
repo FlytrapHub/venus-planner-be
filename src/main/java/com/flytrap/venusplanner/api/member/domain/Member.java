@@ -1,6 +1,6 @@
 package com.flytrap.venusplanner.api.member.domain;
 
-import com.flytrap.venusplanner.global.auth.infrastructure.dto.StandardizedUserResource;
+import com.flytrap.venusplanner.api.auth_member.infrastructure.dto.StandardizedUserResource;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
