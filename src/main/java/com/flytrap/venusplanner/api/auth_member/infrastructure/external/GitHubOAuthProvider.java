@@ -1,7 +1,7 @@
 package com.flytrap.venusplanner.api.auth_member.infrastructure.external;
 
 import com.flytrap.venusplanner.global.auth.config.OAuthWebClientConfig.GitHubOAuthFormDataBuilder;
-import com.flytrap.venusplanner.global.auth.exception.GitHubOAuthRequestException;
+import com.flytrap.venusplanner.api.auth_member.exception.GitHubOAuthRequestException;
 import com.flytrap.venusplanner.api.auth_member.infrastructure.dto.AccessTokenFromGitHub;
 import com.flytrap.venusplanner.api.auth_member.infrastructure.dto.StandardizedUserResource;
 import com.flytrap.venusplanner.api.auth_member.infrastructure.dto.UserEmailResourceFromGitHub;
