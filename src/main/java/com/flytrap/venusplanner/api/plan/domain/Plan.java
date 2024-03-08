@@ -72,7 +72,7 @@ public class Plan {
     public void validateTitle() {
         final String DEFAULT_TILE = "새로운 일정";
 
-        if (title == null || title.isBlank()) {
+        if (title == null || title.isEmpty()) {
             title = DEFAULT_TILE;
         }
     }
