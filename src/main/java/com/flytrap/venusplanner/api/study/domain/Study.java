@@ -1,11 +1,11 @@
 package com.flytrap.venusplanner.api.study.domain;
 
+import com.flytrap.venusplanner.global.entity.TimeAuditingBaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Study {
+public class Study extends TimeAuditingBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,11 @@ public class Study {
 
     @NotNull
     private String name;
+
     private String description;
-    private Instant createdTime;
+
+    public Study(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

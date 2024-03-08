@@ -13,6 +13,11 @@ public class StudyService {
 
     private final StudyRepository studyRepository;
 
+    @Transactional
+    public Study saveStudy(Study study) {
+        return studyRepository.save(study);
+    }
+
     public Study findById(Long studyId) {
         //TODO: optional null 처리
         return studyRepository.findById(studyId).get();
