@@ -26,11 +26,11 @@ public class StudyPlanFacadeService {
         return planService.savePlan(study, planCategory, request);
     }
 
-    public List<StudyPlanReadResponse> findAllBy(Long studyId, int year, int month) {
+    public List<Plan> findAllBy(Long studyId, int year, int month) {
         Study study = studyService.findById(studyId);
         List<Plan> plans = planService.findAllByStudyIdAndYearAndMonth(studyId, year, month);
 
-        return StudyPlanReadResponse.from(plans);
+        return plans;
     }
 
     public void deleteById(Long planId) {
