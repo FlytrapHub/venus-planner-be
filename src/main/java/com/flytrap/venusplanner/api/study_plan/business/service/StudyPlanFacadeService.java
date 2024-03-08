@@ -11,21 +11,25 @@ import com.flytrap.venusplanner.api.study_plan.presentation.dto.response.StudyPl
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class StudyPlanFacadeService {
 
     private final StudyService studyService;
     private final PlanCategoryService planCategoryService;
     private final PlanService planService;
 
+    @Transactional
     public Long savePlan(Long studyId, StudyPlanCreateRequest request) {
         Study study = studyService.findById(studyId);
         PlanCategory planCategory = planCategoryService.findById(request.categoryId());
         return planService.savePlan(study, planCategory, request);
     }
 
+    @Transactional
     public List<Plan> findAllBy(Long studyId, int year, int month) {
         Study study = studyService.findById(studyId);
         List<Plan> plans = planService.findAllByStudyIdAndYearAndMonth(studyId, year, month);
