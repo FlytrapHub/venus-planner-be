@@ -50,6 +50,18 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured'
 }
 
+/* Submodule start */
+processResources.dependsOn('submodule')
+
+tasks.register('submodule', Copy) {
+    description = 'Copy submodule to project'
+
+    from('./submodule') {
+        include('*.yml')
+    }
+    into('src/main/resources')
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
