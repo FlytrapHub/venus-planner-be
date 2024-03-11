@@ -1,5 +1,6 @@
 package com.flytrap.venusplanner.api.study_plan.presentation.controller;
 
+import com.flytrap.venusplanner.api.plan.domain.Plan;
 import com.flytrap.venusplanner.api.study_plan.business.service.StudyPlanFacadeService;
 import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.PlanReadConditionRequest;
 import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
@@ -24,7 +25,7 @@ public class StudyPlanController {
     private final StudyPlanFacadeService studyPlanFacadeService;
 
     @PostMapping("/api/v1/studies/{studyId}/plans")
-    public ResponseEntity<Long> createPlan(@PathVariable("studyId") Long studyId,
+    public ResponseEntity<Long> createPlan(@PathVariable Long studyId,
                                            @Valid @RequestBody StudyPlanCreateRequest request) {
         Long memberId = 1L;
         Long planId = studyPlanFacadeService.savePlan(studyId, request);
@@ -35,17 +36,17 @@ public class StudyPlanController {
 
     @GetMapping("/api/v1/studies/{studyId}/plans")
     public ResponseEntity<List<StudyPlanReadResponse>> readPlans(
-            @PathVariable("studyId") Long studyId,
+            @PathVariable Long studyId,
             @Valid @ModelAttribute PlanReadConditionRequest params) {
-        List<StudyPlanReadResponse> studyPlans = studyPlanFacadeService.findAllBy(studyId, params.year(), params.month());
+        List<Plan> studyPlans = studyPlanFacadeService.findAllBy(studyId, params.year(), params.month());
 
         return ResponseEntity.ok()
-                .body(studyPlans);
+                .body(StudyPlanReadResponse.from(studyPlans));
     }
 
     @DeleteMapping("/api/v1/studies/{studyId}/plans/{planId}")
     public ResponseEntity<Void> deletePlan(
-            @PathVariable("planId") Long planId
+            @PathVariable Long planId
     ) {
         studyPlanFacadeService.deleteById(planId);
 

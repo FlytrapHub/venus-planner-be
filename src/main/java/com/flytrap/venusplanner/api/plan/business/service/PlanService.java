@@ -17,7 +17,6 @@ public class PlanService {
 
     private final PlanRepository planRepository;
 
-    @Transactional
     public Long savePlan(Study study, PlanCategory planCategory, StudyPlanCreateRequest request) {
         //TODO: 반복 옵션 설정시 DB에 여러 plan 저장 로직 추가
         Plan plan = request.toEntity(study, planCategory);

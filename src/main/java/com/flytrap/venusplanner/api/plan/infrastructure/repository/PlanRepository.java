@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlanRepository extends JpaRepository<Plan, Long> {
     @Query(value = "SELECT * FROM plan p WHERE p.study_id = :studyId " +
-            "AND YEAR(p.start_time) = :year AND MONTH(p.start_time) = :month " +
-            "AND YEAR(p.end_time) = :year AND MONTH(p.end_time) = :month",
+            "AND (YEAR(p.start_time) = :year AND MONTH(p.start_time) = :month) " +
+            "OR (YEAR(p.end_time) = :year AND MONTH(p.end_time) = :month)",
             nativeQuery = true)
     List<Plan> findAllByStudyIdAndYearAndMonth(Long studyId, int year, int month);
 }
