@@ -13,7 +13,7 @@ CREATE TABLE `member_study`
     `study_id`          BIGINT    NOT NULL,
     `roll_id`           BIGINT    NOT NULL,
     `permission_id`     BIGINT    NOT NULL,
-    `registration_time` TIMESTAMP NOT NULL
+    `created_time`      TIMESTAMP NOT NULL
 );
 
 CREATE TABLE `member`
