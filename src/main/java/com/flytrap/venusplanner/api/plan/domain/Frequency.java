@@ -10,12 +10,16 @@ public enum Frequency implements EndOptionCalculate {
     WEEKLY {
         @Override
         public Instant calculateEndDate(Instant startDate, int count) {
-            return startDate.plus((count - 1) * 7, ChronoUnit.DAYS);
+            ZonedDateTime zdtStart = startDate.atZone(ZoneId.systemDefault());
+            ZonedDateTime zdtEnd = zdtStart.plusWeeks(count - 1);
+            return zdtEnd.toInstant();
         }
 
         @Override
         public int calculateCount(Instant startDate, Instant endDate) {
-            long weeksBetween = ChronoUnit.WEEKS.between(startDate, endDate);
+            ZonedDateTime zdtStart = startDate.atZone(ZoneId.systemDefault());
+            ZonedDateTime zdtEnd = endDate.atZone(ZoneId.systemDefault());
+            long weeksBetween = ChronoUnit.WEEKS.between(zdtStart, zdtEnd);
             return (int) weeksBetween + 1;
         }
     },
