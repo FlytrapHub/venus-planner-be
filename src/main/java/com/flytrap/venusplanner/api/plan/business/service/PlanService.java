@@ -1,7 +1,9 @@
 package com.flytrap.venusplanner.api.plan.business.service;
 
 import com.flytrap.venusplanner.api.plan.domain.Plan;
+import com.flytrap.venusplanner.api.plan.domain.RecurringOption;
 import com.flytrap.venusplanner.api.plan.infrastructure.repository.PlanRepository;
+import com.flytrap.venusplanner.api.plan.infrastructure.repository.RecurringOptionRepository;
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
 import com.flytrap.venusplanner.api.study.domain.Study;
 import com.flytrap.venusplanner.api.plan.presentation.dto.request.PlanCreateRequest;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PlanService {
 
     private final PlanRepository planRepository;
+    private final RecurringOptionRepository recurringOptionRepository;
 
     public Long savePlan(Study study, PlanCategory planCategory, PlanCreateRequest request) {
         //TODO: 반복 옵션 설정시 DB에 여러 plan 저장 로직 추가
@@ -35,5 +38,17 @@ public class PlanService {
         //TODO: 반복옵션 전체 삭제 여부
         //TODO: plan이 없을 때 예외처리
         planRepository.deleteById(planId);
+    }
+
+    public void deleteAllByRecurringId(Long planId) {
+        //Todo: plan 없을 때 예외처리
+        Plan plan = planRepository.findById(planId).get();
+        RecurringOption recurringOption = plan.getRecurringOption();
+        if (recurringOption != null) {
+            planRepository.deleteAllByRecurringOptionId(recurringOption.getId());
+            recurringOptionRepository.deleteById(recurringOption.getId());
+        } else {
+            planRepository.deleteById(planId);
+        }
     }
 }

@@ -35,7 +35,12 @@ public class StudyPlanFacadeService {
         return plans;
     }
 
-    public void deleteById(Long planId) {
-        planService.deleteById(planId);
+    @Transactional
+    public void delete(Long planId, boolean applyAll) {
+        if (applyAll) {
+            planService.deleteAllByRecurringId(planId);
+        } else {
+            planService.deleteById(planId);
+        }
     }
 }
