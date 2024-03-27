@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 public enum Frequency implements EndOptionCalculate {
-    WEEKLY {
+    WEEKLY(ChronoUnit.WEEKS) {
         @Override
         public Instant calculateEndDate(Instant startDate, int count) {
             ZonedDateTime zdtStart = DateTimeUtils.toZonedDateTime(startDate);
@@ -22,7 +22,7 @@ public enum Frequency implements EndOptionCalculate {
             return (int) ChronoUnit.WEEKS.between(zdtStart, zdtEnd) + 1;
         }
     },
-    MONTHLY {
+    MONTHLY(ChronoUnit.MONTHS) {
         @Override
         public Instant calculateEndDate(Instant startDate, int count) {
             ZonedDateTime zdtStart = startDate.atZone(ZoneId.systemDefault());
@@ -38,7 +38,7 @@ public enum Frequency implements EndOptionCalculate {
             return (int) monthsBetween + 1;
         }
     },
-    YEARLY {
+    YEARLY(ChronoUnit.YEARS) {
         @Override
         public Instant calculateEndDate(Instant startDate, int count) {
             ZonedDateTime zdtStart = startDate.atZone(ZoneId.systemDefault());
@@ -54,4 +54,14 @@ public enum Frequency implements EndOptionCalculate {
             return (int) yearsBetween + 1;
         }
     };
+
+    private final ChronoUnit chronoUnit;
+
+    Frequency(ChronoUnit chronoUnit) {
+        this.chronoUnit = chronoUnit;
+    }
+
+    public ChronoUnit getChronoUnit() {
+        return chronoUnit;
+    }
 }
