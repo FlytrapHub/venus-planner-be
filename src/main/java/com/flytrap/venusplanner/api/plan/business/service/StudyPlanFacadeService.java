@@ -16,20 +16,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class StudyPlanFacadeService {
 
-    private final StudyService studyService;
+    private final StudyValid studyValid;
     private final PlanCategoryService planCategoryService;
     private final PlanService planService;
 
     @Transactional
-    public Long savePlan(Long studyId, StudyPlanCreateRequest request) {
-        Study study = studyService.findById(studyId);
+    public Long savePlan(Long studyId, PlanCreateRequest request) {
+        Study study = studyValid.findById(studyId);
         PlanCategory planCategory = planCategoryService.findById(request.categoryId());
         return planService.savePlan(study, planCategory, request);
     }
 
     @Transactional
     public List<Plan> findAllBy(Long studyId, int year, int month) {
-        Study study = studyService.findById(studyId);
+        Study study = studyValid.findById(studyId);
         List<Plan> plans = planService.findAllByStudyIdAndYearAndMonth(studyId, year, month);
 
         return plans;
