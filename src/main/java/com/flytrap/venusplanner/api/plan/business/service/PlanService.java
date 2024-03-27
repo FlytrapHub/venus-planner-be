@@ -4,7 +4,7 @@ import com.flytrap.venusplanner.api.plan.domain.Plan;
 import com.flytrap.venusplanner.api.plan.infrastructure.repository.PlanRepository;
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
 import com.flytrap.venusplanner.api.study.domain.Study;
-import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
+import com.flytrap.venusplanner.api.plan.presentation.dto.request.PlanCreateRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class PlanService {
 
     private final PlanRepository planRepository;
 
-    public Long savePlan(Study study, PlanCategory planCategory, StudyPlanCreateRequest request) {
+    public Long savePlan(Study study, PlanCategory planCategory, PlanCreateRequest request) {
         //TODO: 반복 옵션 설정시 DB에 여러 plan 저장 로직 추가
         Plan plan = request.toEntity(study, planCategory);
         planRepository.save(plan);

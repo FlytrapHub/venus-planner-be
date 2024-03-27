@@ -1,13 +1,11 @@
-package com.flytrap.venusplanner.api.study_plan.business.service;
+package com.flytrap.venusplanner.api.plan.business.service;
 
-import com.flytrap.venusplanner.api.plan.business.service.PlanService;
 import com.flytrap.venusplanner.api.plan.domain.Plan;
+import com.flytrap.venusplanner.api.plan.presentation.dto.request.PlanCreateRequest;
 import com.flytrap.venusplanner.api.plan_category.business.service.PlanCategoryService;
 import com.flytrap.venusplanner.api.plan_category.domain.PlanCategory;
-import com.flytrap.venusplanner.api.study.business.service.StudyService;
+import com.flytrap.venusplanner.api.study.business.service.StudyValid;
 import com.flytrap.venusplanner.api.study.domain.Study;
-import com.flytrap.venusplanner.api.study_plan.presentation.dto.request.StudyPlanCreateRequest;
-import com.flytrap.venusplanner.api.study_plan.presentation.dto.response.StudyPlanReadResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
